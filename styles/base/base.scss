@@ -1,0 +1,9 @@
+@use "./utils/variables.scss" as *;
+@use "./utils/responsive.scss" as *;
+@use "../../node_modules/include-media/dist/include-media" as *;
+
+body {
+  font-family: $font-helvetica, serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+}
