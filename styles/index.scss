@@ -2,3 +2,6 @@
 @use "./base/base.scss" as *;
 
 @use "./components/preloader.scss" as *;
+
+@use "./pages/main-page/main-page.scss" as *;
+@use "./pages/main-page/gallery.scss" as *;

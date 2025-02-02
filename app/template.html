@@ -25,19 +25,24 @@
         <span class="preloader__progress">0%</span>
       </div>
 
-      <div class="page">
-        <div class="fixed-background">
-          <span class="our-names">Aqui vai um texto</span>
-          <h1>Floema</h1>
-          <span class="years">1993--2025</span>
+      <div class="main-page">
+        <div class="main-page__background">
+          <span class="main-page__names">Aqui vai um texto</span>
+          <div class="main-page__highlight__wrapper">
+            <h1 class="active">Floema</h1>
+            <h1>Xilema</h1>
+            <h1>Garema</h1>
+            <h1>Jurema</h1>
+          </div>
+          <span class="main-page__years"><span>1993</span><span>2025</span>
         </div>
-        <div class="hero"></div>
-        <div class="gallery">
-          <figure class="media">
+        <!-- <div class="main-page__hero"></div> -->
+        <div class="main-page__gallery">
+          <figure class="main-page__media">
             <img
               src='<%= require("./images/placeholder.webp").default %>'
               alt="Placeholder"
-              class="media-image"
+              class="main-page__media__image"
             />
           </figure>
         </div>

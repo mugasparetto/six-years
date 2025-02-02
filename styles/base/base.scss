@@ -3,6 +3,12 @@
 @use "./utils/responsive.scss" as *;
 @use "../../node_modules/include-media/dist/include-media" as *;
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 html {
   @extend %cover;
 
@@ -22,4 +28,8 @@ body {
   font-family: $font-helvetica, serif;
   font-size: 1.6rem;
   font-weight: 300;
+}
+
+img {
+  vertical-align: middle;
 }

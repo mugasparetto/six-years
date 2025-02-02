@@ -1,0 +1,71 @@
+@use "../../utils/mixins.scss" as *;
+@use "../../utils/functions.scss" as *;
+@use "../../utils/variables.scss" as *;
+@use "../../shared/titles.scss" as *;
+@use "../../shared/descriptions.scss" as *;
+@use '../../utils/responsive.scss' as *;
+
+@use "../../../node_modules/include-media/dist/include-media" as *;
+
+.main-page {
+  @extend %cover;
+  @extend %center;
+}
+
+.main-page__background {
+  @extend %cover;
+  @extend %center;
+}
+
+.main-page__names {
+  @extend %description-16;
+
+  position: absolute;
+  top: 7.3rem;
+  left: 50%;
+  overflow: hidden;
+  transform: translateX(-50%);
+}
+
+.main-page__highlight__wrapper {
+  @extend %cover;
+  position: relative;
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
+.main-page__years {
+  @extend %description-16;
+
+  position: absolute;
+  bottom: 7.3rem;
+  left: 50%;
+  overflow: hidden;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 3.2rem;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background-color: black;
+
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 1px);
+    transform: translate(-50%, -50%);
+  }
+}

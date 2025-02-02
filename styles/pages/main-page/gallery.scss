@@ -1,0 +1,22 @@
+@use "../../utils/mixins.scss" as *;
+@use "../../utils/functions.scss" as *;
+@use "../../utils/variables.scss" as *;
+@use "../../shared/titles.scss" as *;
+@use "../../shared/descriptions.scss" as *;
+@use '../../utils/responsive.scss' as *;
+
+@use "../../../node_modules/include-media/dist/include-media" as *;
+
+.main-page__media {
+  height: 78.2rem;
+  width: 55.4rem;
+  position: relative;
+
+  display: none;
+}
+
+.main-page__media__image {
+  @extend %cover;
+
+  object-fit: cover;
+}
