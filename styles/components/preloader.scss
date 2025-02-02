@@ -1,0 +1,38 @@
+@use "../utils/mixins.scss" as *;
+@use "../utils/functions.scss" as *;
+@use "../utils/variables.scss" as *;
+@use "../shared/titles.scss" as *;
+@use "../shared/descriptions.scss" as *;
+@use '../utils/responsive.scss' as *;
+
+@use "../../node_modules/include-media/dist/include-media" as *;
+
+.preloader {
+  @extend %cover;
+  @extend %center;
+
+  text-align: center;
+  background-color: $background-1;
+
+  z-index: z("preloader");
+}
+
+.preloader__text {
+  @extend %title-32;
+  max-width: 50rem;
+  line-height: 4.8rem;
+}
+
+.preloader__progress {
+  @extend %description-14;
+
+  position: absolute;
+  bottom: 7.3rem;
+  left: 50%;
+  overflow: hidden;
+  transform: translateX(-50%);
+
+  @include media("<phone") {
+    font-size: 2.5rem;
+  }
+}

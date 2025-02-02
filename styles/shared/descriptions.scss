@@ -1,0 +1,12 @@
+@use '../utils/variables.scss' as *;
+@use '../utils/responsive.scss' as *;
+
+@use "../../node_modules/include-media/dist/include-media" as *;
+
+%description-14 {
+  font-size: 1.4rem;
+
+  @include media("<phone") {
+    font-size: 3rem;
+  }
+}

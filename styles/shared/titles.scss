@@ -1,0 +1,13 @@
+@use '../utils/variables.scss' as *;
+@use '../utils/responsive.scss' as *;
+
+@use "../../node_modules/include-media/dist/include-media" as *;
+
+%title-32 {
+  font-family: font-cormorant-garamond, serif;
+  font-size: 3.2rem;
+
+  @include media("<phone") {
+    font-size: 4.8rem;
+  }
+}
