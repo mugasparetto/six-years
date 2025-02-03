@@ -7,12 +7,114 @@
 
 @use "../../../node_modules/include-media/dist/include-media" as *;
 
+.main-page__gallery {
+  position: absolute;
+  top: 100vh;
+  display: grid;
+  padding-bottom: 50vh;
+  padding-bottom: calc(var(--vh, 1vh) * 50);
+
+  @include media("<600px") {
+    grid-template-columns: repeat(6, 1fr);
+    left: 5.3333333333vw;
+    right: 5.3333333333vw;
+    grid-column-gap: 5.3333333333vw;
+  }
+
+  @include media(">=601px") {
+    grid-template-columns: repeat(12, 1fr);
+    left: 1.3888888889vw;
+    right: 1.3888888889vw;
+    grid-column-gap: 1.3888888889vw;
+  }
+}
+
 .main-page__media {
-  height: 78.2rem;
-  width: 55.4rem;
+  aspect-ratio: 335/447;
   position: relative;
 
-  display: none;
+  @include media("<600px") {
+    margin-top: 20vw;
+
+    &:nth-child(6n + 1) {
+      grid-column: 4/7;
+    }
+
+    &:nth-child(6n + 2) {
+      grid-column: 1/4;
+    }
+
+    &:nth-child(6n + 3) {
+      grid-column: 3/7;
+      margin: 20vw -5.3333333333vw 0 5.3333333333vw;
+    }
+
+    &:nth-child(6n + 4) {
+      grid-column: 2/5;
+    }
+
+    &:nth-child(6n + 5) {
+      grid-column: 4/7;
+    }
+
+    &:nth-child(6n + 6) {
+      grid-column: 2/6;
+    }
+  }
+
+  @include media(">=601px") {
+    &:nth-child(10n + 1) {
+      grid-column: 2/4;
+      margin-top: 7.3611111111vw;
+    }
+
+    &:nth-child(10n + 2) {
+      grid-column: 10/13;
+      margin-top: 14.6527777778vw;
+    }
+
+    &:nth-child(10n + 3) {
+      grid-column: 4/7;
+      margin-top: -4.7222222222vw;
+      z-index: 2;
+    }
+
+    &:nth-child(10n + 4) {
+      grid-column: 9/11;
+      margin-top: 21.7361111111vw;
+    }
+
+    &:nth-child(10n + 5) {
+      grid-column: 3/6;
+      margin-top: -1.0416666667vw;
+      z-index: 2;
+    }
+
+    &:nth-child(10n + 6) {
+      grid-column: 10/13;
+      margin-top: 18.4722222222vw;
+    }
+
+    &:nth-child(10n + 7) {
+      grid-column: 2/4;
+      margin-top: -2.8472222222vw;
+    }
+
+    &:nth-child(10n + 8) {
+      grid-column: 8/11;
+      margin-top: 14.2361111111vw;
+    }
+
+    &:nth-child(10n + 9) {
+      grid-column: 3/6;
+      margin-top: -7.3611111111vw;
+    }
+
+    &:nth-child(10n + 10) {
+      grid-column: 9/11;
+      margin-top: 22.4305555556vw;
+    }
+  }
 }
 
 .main-page__media__image {
