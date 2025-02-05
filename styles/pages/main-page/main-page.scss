@@ -70,3 +70,14 @@
     transform: translate(-50%, -50%);
   }
 }
+
+.main-page__content {
+  position: absolute;
+  top: 100vh;
+  padding-bottom: 50vh;
+  padding-bottom: calc(var(--vh, 1vh) * 50);
+}
+
+.main-page__year-wrapper {
+  margin-bottom: 200vh;
+}

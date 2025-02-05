@@ -8,11 +8,7 @@
 @use "../../../node_modules/include-media/dist/include-media" as *;
 
 .main-page__gallery {
-  position: absolute;
-  top: 100vh;
   display: grid;
-  padding-bottom: 50vh;
-  padding-bottom: calc(var(--vh, 1vh) * 50);
 
   @include media("<600px") {
     grid-template-columns: repeat(6, 1fr);
