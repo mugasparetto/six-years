@@ -26,6 +26,7 @@
   left: 50%;
   overflow: hidden;
   transform: translateX(-50%);
+  opacity: 0.48;
 }
 
 .main-page__highlight__wrapper {
@@ -33,6 +34,7 @@
   position: relative;
 
   h1 {
+    @extend %title-36;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -53,6 +55,7 @@
   left: 50%;
   overflow: hidden;
   transform: translateX(-50%);
+  opacity: 0.48;
 
   display: flex;
   gap: 3.2rem;
@@ -76,6 +79,16 @@
   top: 100vh;
   padding-bottom: 50vh;
   padding-bottom: calc(var(--vh, 1vh) * 50);
+
+  @include media("<600px") {
+    left: 5.3333333333vw;
+    right: 5.3333333333vw;
+  }
+
+  @include media(">=601px") {
+    left: 1.3888888889vw;
+    right: 1.3888888889vw;
+  }
 }
 
 .main-page__year-wrapper {

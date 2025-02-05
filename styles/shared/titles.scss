@@ -3,11 +3,15 @@
 
 @use "../../node_modules/include-media/dist/include-media" as *;
 
-%title-32 {
-  font-family: font-cormorant-garamond, serif;
-  font-size: 3.2rem;
+%title-36 {
+  font-family: $font-cormorant-garamond, serif;
+  font-size: 3.6rem;
 
-  @include media("<phone") {
-    font-size: 4.8rem;
+  @include media("<1024px") {
+    font-size: 4rem;
+  }
+
+  @include media("<600px") {
+    font-size: 4.4rem;
   }
 }
