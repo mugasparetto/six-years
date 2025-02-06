@@ -15,9 +15,9 @@ html {
   background: $background-1;
 
   font-size: calc(100vw / 1920 * 10);
-  // overflow: hidden;
+  overflow: hidden;
 
-  // position: fixed;
+  position: fixed;
 
   @include media("<1024px") {
     color: red;

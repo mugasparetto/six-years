@@ -15,7 +15,6 @@
 .main-page__background {
   @extend %cover;
   @extend %center;
-  position: fixed;
 }
 
 .main-page__names {
