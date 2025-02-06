@@ -1,7 +1,10 @@
 import GSAP from "gsap";
 import NormalizeWheel from "normalize-wheel";
 import each from "lodash/each";
+import map from "lodash/map";
 import Prefix from "prefix";
+
+import Reveal from "animations/Reveal";
 
 class Page {
   constructor({ element, elements, id }) {
@@ -9,10 +12,7 @@ class Page {
     this.selector = element;
     this.selectorChildren = {
       ...elements,
-      animationsHighlights: '[data-animation="highlight"]',
-      animationsTitles: '[data-animation="title"]',
-      animationsParagraphs: '[data-animation="paragraph"]',
-      animationsLabels: '[data-animation="label"]',
+      animationsReveal: '[data-animation="reveal"]',
     };
 
     this.scroll = {
@@ -50,6 +50,15 @@ class Page {
     });
 
     this.addEventListeners();
+    this.createAnimations();
+  }
+
+  createAnimations() {
+    this.animations = [];
+
+    this.animationsReveal = map(this.elements.animationsReveal, (element) => {
+      return new Reveal({ element });
+    });
   }
 
   onMouseWheel(event) {
@@ -59,10 +68,7 @@ class Page {
   }
 
   onResize() {
-    console.log("resize");
     this.scroll.limit = this.elements.wrapper.clientHeight - window.innerHeight;
-    console.log(this.elements.wrapper.clientHeight);
-    console.log(window.innerHeight);
   }
 
   update() {
@@ -87,8 +93,6 @@ class Page {
         this.transformPrefix
       ] = `translateY(-${this.scroll.current}px)`;
     }
-
-    // console.log(this.scroll);
   }
 
   addEventListeners() {
