@@ -59,6 +59,8 @@ class Page {
     this.animationsReveal = map(this.elements.animationsReveal, (element) => {
       return new Reveal({ element });
     });
+
+    this.animations.push(...this.animationsReveal);
   }
 
   onMouseWheel(event) {
@@ -69,6 +71,8 @@ class Page {
 
   onResize() {
     this.scroll.limit = this.elements.wrapper.clientHeight - window.innerHeight;
+
+    each(this.animations, (animation) => animation.onResize());
   }
 
   update() {
