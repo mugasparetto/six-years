@@ -10,19 +10,20 @@ class MainPage extends Page {
       element: ".main-page",
       elements: {
         wrapper: ".main-page__content",
-        activeHighlight: ".main-page__highlight__wrapper .active",
+        backgroundText: ".main-page__background__text",
+        highlights: "main-page__background__highlight-wrapper h1",
       },
     });
 
-    this.isShowingYears = false;
+    this.isShowingHighlight = false;
   }
 
   create() {
     super.create();
 
-    this.animateHighlight = GSAP.timeline();
-    this.animateHighlight.pause();
-    this.animateHighlight.to(this.elements.activeHighlight, {
+    this.animateText = GSAP.timeline();
+    this.animateText.pause();
+    this.animateText.to(this.elements.backgroundText, {
       y: -30,
       autoAlpha: 0,
       duration: 0.35,
@@ -32,16 +33,16 @@ class MainPage extends Page {
   update() {
     super.update();
 
-    if (this.scroll.current > 20 && !this.isShowingYears) {
+    if (this.scroll.current > 20 && !this.isShowingHighlight) {
       console.log("animate out title");
-      this.animateHighlight.play();
-      this.isShowingYears = true;
+      this.animateText.play();
+      this.isShowingHighlight = true;
     }
 
-    if (this.scroll.current <= 20 && this.isShowingYears) {
+    if (this.scroll.current <= 20 && this.isShowingHighlight) {
       console.log("animate in title");
-      this.animateHighlight.reverse();
-      this.isShowingYears = false;
+      this.animateText.reverse();
+      this.isShowingHighlight = false;
     }
   }
 }

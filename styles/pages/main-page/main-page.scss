@@ -18,7 +18,7 @@
   @extend %center;
 }
 
-.main-page__names {
+.main-page__background__top-text {
   @extend %description-16;
 
   position: absolute;
@@ -29,34 +29,38 @@
   opacity: 0.48;
 }
 
-.main-page__highlight__wrapper {
-  @extend %cover;
-  position: relative;
+.main-page__background__text {
+  @extend %title-36;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 
+  & span {
+    @extend %description-18;
+    font-family: $font-helvetica, serif;
+    display: block;
+    opacity: 0.64;
+    margin-top: 1rem;
+  }
+}
+
+.main-page__background__highlight-wrapper {
   h1 {
-    @extend %title-36;
+    font-family: $font-helvetica, sans-serif;
+    font-size: 12rem;
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0;
     text-align: center;
-
-    &.active {
-      opacity: 1;
-    }
-
-    & span {
-      @extend %description-18;
-      font-family: $font-helvetica, serif;
-      display: block;
-      opacity: 0.64;
-      margin-top: 1rem;
-    }
+    opacity: 0;
   }
 }
 
-.main-page__years {
+.main-page__background__bottom-text {
   @extend %description-16;
 
   position: absolute;
