@@ -11,7 +11,7 @@ class Animation extends Component {
 
   createObserver() {
     const options = {
-      threshold: 0.75,
+      threshold: 0.25,
     };
 
     this.observer = new IntersectionObserver((entries) => {
