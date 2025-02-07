@@ -21,9 +21,25 @@ class MainPage extends Page {
 
   create() {
     super.create();
+    this.createHighlightsAnimations();
     this.createScrollAnimations();
 
-    this.animateHighlights = [];
+    this.animateText = GSAP.timeline();
+    this.animateText.pause();
+    this.animateText.to(this.elements.backgroundText, {
+      y: -30,
+      autoAlpha: 0,
+      duration: 0.35,
+    });
+
+    this.animateText.call(() => {
+      this.highlightsAnimations[0].play();
+    });
+  }
+
+  createHighlightsAnimations() {
+    this.highlightsAnimations = [];
+
     each(this.elements.highlights, (element, index) => {
       new SplitType(element);
       element.style.opacity = 1;
@@ -47,26 +63,20 @@ class MainPage extends Page {
             },
           }
         );
+      } else {
+        animation.fromTo(
+          element.querySelectorAll(".char"),
+          { y: 50, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, stagger: 0.05 }
+        );
       }
 
-      this.animateHighlights.push(animation);
-    });
-
-    this.animateText = GSAP.timeline();
-    this.animateText.pause();
-    this.animateText.to(this.elements.backgroundText, {
-      y: -30,
-      autoAlpha: 0,
-      duration: 0.35,
-    });
-
-    this.animateText.call(() => {
-      this.animateHighlights[0].play();
+      this.highlightsAnimations.push(animation);
     });
   }
 
   createScrollAnimations() {
-    each(this.scrollTransitions, (section) => {
+    each(this.scrollTransitions, (section, index) => {
       const colorAnimation = GSAP.timeline();
       colorAnimation.pause();
       colorAnimation.to(document.body, {
@@ -74,6 +84,7 @@ class MainPage extends Page {
       });
 
       section.animations.push(colorAnimation);
+      section.animations.push(this.highlightsAnimations[index + 1]);
     });
   }
 
@@ -87,7 +98,7 @@ class MainPage extends Page {
 
     if (this.scroll.current <= 20 && this.isShowingHighlight) {
       this.isShowingHighlight = false;
-      this.animateHighlights[0].reverse();
+      this.highlightsAnimations[0].reverse();
     }
   }
 }
