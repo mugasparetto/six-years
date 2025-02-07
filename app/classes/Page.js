@@ -5,6 +5,7 @@ import map from "lodash/map";
 import Prefix from "prefix";
 
 import Reveal from "animations/Reveal";
+import ScrollTransition from "./ScrollTransition";
 
 class Page {
   constructor({ element, elements, id }) {
@@ -13,6 +14,7 @@ class Page {
     this.selectorChildren = {
       ...elements,
       animationsReveal: '[data-animation="reveal"]',
+      scrollTransitions: "[data-scroll-transition]",
     };
 
     this.scroll = {
@@ -61,6 +63,15 @@ class Page {
     });
 
     this.animations.push(...this.animationsReveal);
+
+    this.scrollTransitions = map(this.elements.scrollTransitions, (element) => {
+      return new ScrollTransition({
+        element,
+        setActiveTransitionSection: this.setActiveTransitionSection.bind(this),
+      });
+    });
+
+    this.animations.push(...this.scrollTransitions);
   }
 
   onMouseWheel(event) {
@@ -73,6 +84,10 @@ class Page {
     this.scroll.limit = this.elements.wrapper.clientHeight - window.innerHeight;
 
     each(this.animations, (animation) => animation.onResize());
+  }
+
+  setActiveTransitionSection(instance) {
+    this.activeTransitionSection = instance;
   }
 
   update() {
@@ -96,6 +111,10 @@ class Page {
       this.elements.wrapper.style[
         this.transformPrefix
       ] = `translateY(-${this.scroll.current}px)`;
+    }
+
+    if (this.activeTransitionSection) {
+      this.activeTransitionSection.transition(this.scroll.current);
     }
   }
 

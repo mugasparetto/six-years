@@ -3,6 +3,7 @@
 @use "../../utils/variables.scss" as *;
 @use "../../shared/titles.scss" as *;
 @use "../../shared/descriptions.scss" as *;
+@use "../../shared/scroll-transitions.scss" as *;
 @use '../../utils/responsive.scss' as *;
 
 @use "../../../node_modules/include-media/dist/include-media" as *;
@@ -91,5 +92,9 @@
 }
 
 .main-page__year-wrapper {
-  margin-bottom: 200vh;
+  margin-bottom: 20rem;
+}
+
+.main-page__transition {
+  @extend %scroll-transition;
 }

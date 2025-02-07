@@ -12,19 +12,15 @@
 html {
   @extend %cover;
 
-  background: $background-1;
-
   font-size: calc(100vw / 1920 * 10);
   overflow: hidden;
 
   position: fixed;
 
   @include media("<1024px") {
-    color: red;
     font-size: calc(100vw / 1024 * 10);
   }
   @include media("<600px") {
-    color: blue;
     font-size: calc(100vw / 600 * 10);
   }
 }
