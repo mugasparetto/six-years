@@ -11,30 +11,34 @@ class ScrollTransition extends Component {
     this.height = this.element.offsetHeight;
     this.top = this.element.offsetTop;
     this.bottom = this.top + this.height;
+    this.threshold = 0.5;
 
     this.createObserver();
   }
 
   createObserver() {
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          console.log("entrou");
-          this.setActive(this);
-        } else {
-          console.log("saiu");
-          this.setActive(null);
-        }
-      });
-    });
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log("entrou");
+            this.setActive(this);
+          } else {
+            console.log("saiu");
+            this.setActive(null);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
 
     this.observer.observe(this.element);
   }
 
   onResize() {
     this.height = this.element.offsetHeight;
-    this.top = this.element.offsetTop;
-    this.bottom = this.top + this.height;
+    this.top = this.element.offsetTop + this.threshold * this.height;
+    this.bottom = this.top + (1 - this.threshold) * this.height;
   }
 
   animate() {
