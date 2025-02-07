@@ -57,6 +57,10 @@
     transform: translate(-50%, -50%);
     text-align: center;
     opacity: 0;
+
+    .char {
+      opacity: 0;
+    }
   }
 }
 

@@ -21,10 +21,8 @@ class ScrollTransition extends Component {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log("entrou");
             this.setActive(this);
           } else {
-            console.log("saiu");
             this.setActive(null);
           }
         });
