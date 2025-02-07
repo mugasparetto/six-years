@@ -60,7 +60,7 @@
   @include media(">=601px") {
     &:nth-child(10n + 1) {
       grid-column: 2/4;
-      margin-top: 7.3611111111vw;
+      // margin-top: 2vw;
     }
 
     &:nth-child(10n + 2) {

@@ -40,9 +40,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
+    text-align: center;
 
     &.active {
       opacity: 1;
+    }
+
+    & span {
+      @extend %description-18;
+      font-family: $font-helvetica, serif;
+      display: block;
+      opacity: 0.64;
+      margin-top: 1rem;
     }
   }
 }
