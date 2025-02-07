@@ -81,7 +81,10 @@ class Page {
   }
 
   onResize() {
-    this.scroll.limit = this.elements.wrapper.clientHeight - window.innerHeight;
+    this.scroll.limit =
+      this.elements.wrapper.offsetTop +
+      this.elements.wrapper.clientHeight -
+      window.innerHeight;
 
     each(this.animations, (animation) => animation.onResize());
   }
