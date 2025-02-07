@@ -21,6 +21,7 @@ class MainPage extends Page {
 
   create() {
     super.create();
+    this.createScrollAnimations();
 
     this.animateHighlights = [];
     each(this.elements.highlights, (element, index) => {
@@ -61,6 +62,18 @@ class MainPage extends Page {
 
     this.animateText.call(() => {
       this.animateHighlights[0].play();
+    });
+  }
+
+  createScrollAnimations() {
+    each(this.scrollTransitions, (section) => {
+      const colorAnimation = GSAP.timeline();
+      colorAnimation.pause();
+      colorAnimation.to(document.body, {
+        backgroundColor: section.element.dataset.transitionColor,
+      });
+
+      section.animations.push(colorAnimation);
     });
   }
 

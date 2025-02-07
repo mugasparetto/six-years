@@ -1,4 +1,5 @@
 import GSAP from "gsap";
+import each from "lodash/each";
 
 import Component from "./Component";
 
@@ -12,6 +13,7 @@ class ScrollTransition extends Component {
     this.top = this.element.offsetTop;
     this.bottom = this.top + this.height;
     this.threshold = 0.5;
+    this.animations = [];
 
     this.createObserver();
   }
@@ -39,14 +41,6 @@ class ScrollTransition extends Component {
     this.bottom = this.top + (1 - this.threshold) * this.height;
   }
 
-  animate() {
-    document.body.style.backgroundColor = GSAP.utils.interpolate(
-      this.element.dataset.transitionColorFrom,
-      this.element.dataset.transitionColorTo,
-      this.progress
-    );
-  }
-
   transition(scrollAmount) {
     this.progress = GSAP.utils.clamp(
       0,
@@ -54,7 +48,9 @@ class ScrollTransition extends Component {
       GSAP.utils.mapRange(this.top, this.bottom, 0, 1, scrollAmount)
     );
 
-    this.animate();
+    each(this.animations, (animation) => {
+      animation.progress(this.progress);
+    });
   }
 }
 

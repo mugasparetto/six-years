@@ -53,6 +53,7 @@ class Page {
 
     this.addEventListeners();
     this.createAnimations();
+    this.createScrollTransitions();
   }
 
   createAnimations() {
@@ -63,15 +64,15 @@ class Page {
     });
 
     this.animations.push(...this.animationsReveal);
+  }
 
+  createScrollTransitions() {
     this.scrollTransitions = map(this.elements.scrollTransitions, (element) => {
       return new ScrollTransition({
         element,
         setActiveTransitionSection: this.setActiveTransitionSection.bind(this),
       });
     });
-
-    this.animations.push(...this.scrollTransitions);
   }
 
   onMouseWheel(event) {
@@ -87,6 +88,7 @@ class Page {
       window.innerHeight;
 
     each(this.animations, (animation) => animation.onResize());
+    each(this.scrollTransitions, (transition) => transition.onResize());
   }
 
   setActiveTransitionSection(instance) {
