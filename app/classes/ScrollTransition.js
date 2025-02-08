@@ -13,7 +13,6 @@ class ScrollTransition extends Component {
     this.top = this.element.offsetTop;
     this.bottom = this.top + this.height;
     this.threshold = 0.5;
-    this.animations = [];
 
     this.createObserver();
   }
@@ -48,9 +47,7 @@ class ScrollTransition extends Component {
       GSAP.utils.mapRange(this.top, this.bottom, 0, 1, scrollAmount)
     );
 
-    each(this.animations, (animation) => {
-      animation.progress(this.progress);
-    });
+    this.animation.progress(this.progress);
   }
 }
 

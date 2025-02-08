@@ -60,6 +60,7 @@
 
     .char {
       opacity: 0;
+      will-change: transform;
     }
   }
 }

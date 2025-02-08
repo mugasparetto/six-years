@@ -21,8 +21,36 @@ class MainPage extends Page {
 
   create() {
     super.create();
-    this.createHighlightsAnimations();
+    this.splitHighlights();
+    this.createInitialAnimation();
     this.createScrollAnimations();
+  }
+
+  splitHighlights() {
+    each(this.elements.highlights, (element, index) => {
+      new SplitType(element);
+      element.style.opacity = 1;
+    });
+  }
+
+  createInitialAnimation() {
+    this.firstHighlightAnimation = GSAP.timeline();
+    this.firstHighlightAnimation.pause();
+    this.firstHighlightAnimation.fromTo(
+      this.elements.highlights[0].querySelectorAll(".char"),
+      {
+        y: 50,
+      },
+      {
+        y: 0,
+        autoAlpha: 1,
+        stagger: 0.1,
+        duration: 0.5,
+        onReverseComplete: () => {
+          this.animateText.reverse();
+        },
+      }
+    );
 
     this.animateText = GSAP.timeline();
     this.animateText.pause();
@@ -33,58 +61,39 @@ class MainPage extends Page {
     });
 
     this.animateText.call(() => {
-      this.highlightsAnimations[0].play();
-    });
-  }
-
-  createHighlightsAnimations() {
-    this.highlightsAnimations = [];
-
-    each(this.elements.highlights, (element, index) => {
-      new SplitType(element);
-      element.style.opacity = 1;
-
-      const animation = GSAP.timeline();
-      animation.pause();
-
-      if (index === 0) {
-        animation.fromTo(
-          element.querySelectorAll(".char"),
-          {
-            y: 50,
-          },
-          {
-            y: 0,
-            autoAlpha: 1,
-            stagger: 0.05,
-            duration: 0.5,
-            onReverseComplete: () => {
-              this.animateText.reverse();
-            },
-          }
-        );
-      } else {
-        animation.fromTo(
-          element.querySelectorAll(".char"),
-          { y: 50, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, stagger: 0.05 }
-        );
-      }
-
-      this.highlightsAnimations.push(animation);
+      this.firstHighlightAnimation.play();
     });
   }
 
   createScrollAnimations() {
     each(this.scrollTransitions, (section, index) => {
-      const colorAnimation = GSAP.timeline();
-      colorAnimation.pause();
-      colorAnimation.to(document.body, {
-        backgroundColor: section.element.dataset.transitionColor,
-      });
+      const animation = GSAP.timeline();
+      animation.pause();
+      animation
+        .to(
+          document.body,
+          {
+            backgroundColor: section.element.dataset.transitionColor,
+          },
+          0
+        )
+        .to(
+          this.elements.highlights[index].querySelectorAll(".char"),
+          {
+            y: -50,
+            autoAlpha: 0,
+            stagger: 0.05,
+          },
+          "<"
+        )
+        .fromTo(
+          this.elements.highlights[index + 1].querySelectorAll(".char"),
+          { y: 50 },
+          { y: 0, autoAlpha: 1, stagger: 0.1, delay: 0.2 },
+          "<"
+        );
 
-      section.animations.push(colorAnimation);
-      section.animations.push(this.highlightsAnimations[index + 1]);
+      section.animation = animation;
     });
   }
 
@@ -98,7 +107,7 @@ class MainPage extends Page {
 
     if (this.scroll.current <= 20 && this.isShowingHighlight) {
       this.isShowingHighlight = false;
-      this.highlightsAnimations[0].reverse();
+      this.firstHighlightAnimation.reverse();
     }
   }
 }
