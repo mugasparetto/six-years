@@ -4,7 +4,7 @@ import each from "lodash/each";
 import p5 from "p5";
 
 import Page from "classes/Page";
-import Sketch from "sketches/sketch";
+import Sketch from "sketches/hero";
 
 class MainPage extends Page {
   constructor() {
