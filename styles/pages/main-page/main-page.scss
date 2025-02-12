@@ -27,6 +27,7 @@
   overflow: hidden;
   transform: translateX(-50%);
   opacity: 0.48;
+  z-index: z("top-bottom-texts");
 }
 
 .main-page__background__text {
@@ -74,6 +75,7 @@
   overflow: hidden;
   transform: translateX(-50%);
   opacity: 0.48;
+  z-index: z("top-bottom-texts");
 
   display: flex;
   gap: 3.2rem;
@@ -117,7 +119,25 @@
 }
 
 .main-page__last-section {
+  position: relative;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   width: 100%;
+}
+
+.main-page__last-section__text {
+  @extend %title-64;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  & span {
+    @extend %description-18;
+    font-family: $font-helvetica, serif;
+    display: block;
+    opacity: 0.64;
+    margin-top: 1rem;
+  }
 }

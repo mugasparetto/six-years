@@ -15,3 +15,16 @@
     font-size: 4.4rem;
   }
 }
+
+%title-64 {
+  font-family: $font-cormorant-garamond, serif;
+  font-size: 6.4rem;
+
+  @include media("<1024px") {
+    font-size: 6.8rem;
+  }
+
+  @include media("<600px") {
+    font-size: 7.2rem;
+  }
+}
