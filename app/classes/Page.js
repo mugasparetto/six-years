@@ -51,7 +51,7 @@ class Page {
       }
     });
 
-    this.addEventListeners();
+    // this.addEventListeners();
     this.createAnimations();
     this.createScrollTransitions();
   }

@@ -13,7 +13,10 @@ class MainPage extends Page {
       element: ".main-page",
       elements: {
         wrapper: ".main-page__content",
-        backgroundText: ".main-page__background__text",
+        backgroundTextDiv: ".main-page__background__text",
+        backgroundTexts: ".main-page__background__text h1",
+        topText: ".main-page__background__top-text",
+        bottomText: ".main-page__background__bottom-text",
         highlights: ".main-page__background__highlight-wrapper h1",
         lastSection: ".main-page__last-section",
       },
@@ -25,6 +28,7 @@ class MainPage extends Page {
   create() {
     super.create();
     this.splitHighlights();
+    this.createIntroAnimation();
     this.createInitialAnimation();
     this.createScrollAnimations();
 
@@ -35,6 +39,51 @@ class MainPage extends Page {
     each(this.elements.highlights, (element, index) => {
       new SplitType(element);
       element.style.opacity = 1;
+    });
+  }
+
+  createIntroAnimation() {
+    this.firstTextAnimation = GSAP.timeline();
+    this.firstTextAnimation
+      .fromTo(
+        this.elements.topText,
+        { y: -50 },
+        { y: 0, autoAlpha: 0.48, duration: 0.75, delay: 0.5 }
+      )
+      .fromTo(
+        this.elements.bottomText,
+        { y: 50 },
+        { y: 0, autoAlpha: 0.48, duration: 0.75, delay: 0.5 },
+        "<"
+      )
+      .fromTo(
+        this.elements.backgroundTexts[0],
+        {
+          y: 50,
+        },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.75,
+          delay: 0.2,
+        }
+      )
+      .fromTo(
+        this.elements.backgroundTexts[1],
+        {
+          y: 50,
+        },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.75,
+          delay: 2.5,
+        },
+        ">"
+      );
+
+    this.firstTextAnimation.call(() => {
+      super.addEventListeners();
     });
   }
 
@@ -59,7 +108,7 @@ class MainPage extends Page {
 
     this.animateText = GSAP.timeline();
     this.animateText.pause();
-    this.animateText.to(this.elements.backgroundText, {
+    this.animateText.to(this.elements.backgroundTextDiv, {
       y: -30,
       autoAlpha: 0,
       duration: 0.35,
