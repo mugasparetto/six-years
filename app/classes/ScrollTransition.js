@@ -9,9 +9,11 @@ class ScrollTransition extends Component {
 
     this.setActive = setActiveTransitionSection;
 
-    this.height = this.element.offsetHeight;
+    const box = this.element.getBoundingClientRect();
+    this.height = box.height;
     this.top = this.element.offsetTop;
-    this.bottom = this.top + this.height;
+    this.bottom = this.top + (1 - this.threshold) * this.height;
+
     this.threshold = 0.5;
 
     this.createObserver();
@@ -35,8 +37,9 @@ class ScrollTransition extends Component {
   }
 
   onResize() {
-    this.height = this.element.offsetHeight;
-    this.top = this.element.offsetTop + this.threshold * this.height;
+    const box = this.element.getBoundingClientRect();
+    this.height = box.height;
+    this.top = box.top;
     this.bottom = this.top + (1 - this.threshold) * this.height;
   }
 
