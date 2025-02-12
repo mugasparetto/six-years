@@ -4,7 +4,7 @@ import each from "lodash/each";
 import map from "lodash/map";
 import Prefix from "prefix";
 
-import Reveal from "animations/Reveal";
+import Parallax from "animations/Parallax";
 import ScrollTransition from "./ScrollTransition";
 
 class Page {
@@ -13,7 +13,7 @@ class Page {
     this.selector = element;
     this.selectorChildren = {
       ...elements,
-      animationsReveal: '[data-animation="reveal"]',
+      animationsParallaxes: '[data-animation="parallax"]',
       scrollTransitions: "[data-scroll-transition]",
     };
 
@@ -59,11 +59,14 @@ class Page {
   createAnimations() {
     this.animations = [];
 
-    this.animationsReveal = map(this.elements.animationsReveal, (element) => {
-      return new Reveal({ element });
-    });
+    this.animationsParallaxes = map(
+      this.elements.animationsParallaxes,
+      (element) => {
+        return new Parallax({ element });
+      }
+    );
 
-    this.animations.push(...this.animationsReveal);
+    this.animations.push(...this.animationsParallaxes);
   }
 
   createScrollTransitions() {
@@ -121,6 +124,10 @@ class Page {
     if (this.activeTransitionSection) {
       this.activeTransitionSection.transition(this.scroll.current);
     }
+
+    each(this.animations, (animation) => {
+      animation.update && animation.update(this.scroll);
+    });
   }
 
   addEventListeners() {
