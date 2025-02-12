@@ -83,7 +83,7 @@ class MainPage extends Page {
       );
 
     this.firstTextAnimation.call(() => {
-      super.addEventListeners();
+      this.shouldScroll = true;
     });
   }
 

@@ -27,6 +27,8 @@ class Page {
     this.onMouseWheelEvent = this.onMouseWheel.bind(this);
 
     this.transformPrefix = Prefix("transform");
+
+    this.shouldScroll = false;
   }
 
   create() {
@@ -51,7 +53,7 @@ class Page {
       }
     });
 
-    // this.addEventListeners();
+    this.addEventListeners();
     this.createAnimations();
     this.createScrollTransitions();
   }
@@ -79,9 +81,11 @@ class Page {
   }
 
   onMouseWheel(event) {
-    const { pixelY } = NormalizeWheel(event);
+    if (this.shouldScroll) {
+      const { pixelY } = NormalizeWheel(event);
 
-    this.scroll.target += pixelY;
+      this.scroll.target += pixelY;
+    }
   }
 
   onResize() {
