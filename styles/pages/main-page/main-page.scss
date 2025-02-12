@@ -95,8 +95,7 @@
 .main-page__content {
   position: absolute;
   top: 100vh;
-  padding-bottom: 50vh;
-  padding-bottom: calc(var(--vh, 1vh) * 50);
+  top: calc(var(--vh, 1vh) * 100);
 
   @include media("<600px") {
     left: 5.3333333333vw;
@@ -115,4 +114,10 @@
 
 .main-page__transition {
   @extend %scroll-transition;
+}
+
+.main-page__last-section {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
 }

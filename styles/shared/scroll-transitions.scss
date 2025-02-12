@@ -1,4 +1,5 @@
 %scroll-transition {
   height: 200vh;
+  height: calc(var(--vh, 1vh) * 200);
   width: 100%;
 }

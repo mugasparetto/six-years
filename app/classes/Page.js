@@ -124,7 +124,7 @@ class Page {
   }
 
   addEventListeners() {
-    window.addEventListener("mousewheel", this.onMouseWheelEvent);
+    window.addEventListener("wheel", this.onMouseWheelEvent);
   }
 }
 

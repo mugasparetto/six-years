@@ -1,8 +1,10 @@
 import GSAP from "gsap";
 import SplitType from "split-type";
 import each from "lodash/each";
+import p5 from "p5";
 
 import Page from "classes/Page";
+import Sketch from "sketches/sketch";
 
 class MainPage extends Page {
   constructor() {
@@ -13,6 +15,7 @@ class MainPage extends Page {
         wrapper: ".main-page__content",
         backgroundText: ".main-page__background__text",
         highlights: ".main-page__background__highlight-wrapper h1",
+        lastSection: ".main-page__last-section",
       },
     });
 
@@ -24,6 +27,8 @@ class MainPage extends Page {
     this.splitHighlights();
     this.createInitialAnimation();
     this.createScrollAnimations();
+
+    new p5(Sketch, this.elements.lastSection);
   }
 
   splitHighlights() {
