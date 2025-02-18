@@ -20,6 +20,7 @@ class MainPage extends Page {
         bottomText: ".main-page__background__bottom-text",
         highlights: ".main-page__background__highlight-wrapper h1",
         lastSection: ".main-page__last-section",
+        themeColor: "[name=theme-color]",
       },
     });
 
@@ -128,11 +129,18 @@ class MainPage extends Page {
       animation.pause();
       animation
         .to(
-          document.body,
+          this.element,
           {
             backgroundColor: section.element.dataset.transitionColor,
           },
           0
+        )
+        .to(
+          this.elements.themeColor,
+          {
+            attr: { content: section.element.dataset.transitionColor },
+          },
+          "<"
         )
         .to(
           this.elements.highlights[index].querySelectorAll(".char"),
