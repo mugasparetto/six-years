@@ -30,6 +30,10 @@
   position: relative;
   overflow: hidden;
 
+  &:hover .main-page__media__description {
+    opacity: 1;
+  }
+
   @include media("<600px") {
     margin-top: 20vw;
 
@@ -117,4 +121,26 @@
   @extend %cover;
 
   object-fit: cover;
+}
+
+.main-page__media__description {
+  @extend %description-16;
+  position: absolute;
+  height: 6vw;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: white;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5vw;
+  opacity: 0;
+  transition: opacity 200ms ease-in;
 }

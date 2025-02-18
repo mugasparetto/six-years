@@ -1,5 +1,4 @@
 import GSAP from "gsap";
-import each from "lodash/each";
 
 import Component from "./Component";
 
