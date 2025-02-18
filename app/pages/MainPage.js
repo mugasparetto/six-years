@@ -4,6 +4,7 @@ import each from "lodash/each";
 import p5 from "p5";
 
 import Page from "classes/Page";
+import Detection from "classes/Detection";
 import Sketch from "sketches/hero";
 
 class MainPage extends Page {
@@ -32,7 +33,9 @@ class MainPage extends Page {
     this.createInitialAnimation();
     this.createScrollAnimations();
 
-    new p5(Sketch, this.elements.lastSection);
+    if (Detection.isDesktop()) {
+      new p5(Sketch, this.elements.lastSection);
+    }
   }
 
   splitHighlights() {

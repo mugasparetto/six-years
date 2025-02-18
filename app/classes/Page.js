@@ -6,6 +6,7 @@ import Prefix from "prefix";
 
 import Parallax from "animations/Parallax";
 import ScrollTransition from "./ScrollTransition";
+import Detection from "./Detection";
 
 class Page {
   constructor({ element, elements, id }) {
@@ -19,12 +20,21 @@ class Page {
 
     this.scroll = {
       current: 0,
+      position: 0,
       target: 0,
       last: 0,
       limit: 0,
     };
 
-    this.onMouseWheelEvent = this.onMouseWheel.bind(this);
+    if (Detection.isPhone()) {
+      this.onTouchStartEvent = this.onTouchStart.bind(this);
+      this.onTouchMoveEvent = this.onTouchMove.bind(this);
+      this.onTouchEndEvent = this.onTouchEnd.bind(this);
+    }
+
+    if (Detection.isDesktop()) {
+      this.onMouseWheelEvent = this.onMouseWheel.bind(this);
+    }
 
     this.transformPrefix = Prefix("transform");
 
@@ -88,6 +98,28 @@ class Page {
     }
   }
 
+  onTouchStart(event) {
+    this.isDown = true;
+
+    if (this.shouldScroll) {
+      this.scroll.position = this.scroll.current;
+      this.start = event.touches ? event.touches[0].clientY : event.clientY;
+    }
+  }
+
+  onTouchMove(event) {
+    if (this.shouldScroll) {
+      const y = event.touches ? event.touches[0].clientY : event.clientY;
+      const distance = (this.start - y) * 2;
+
+      this.scroll.target = this.scroll.position + distance;
+    }
+  }
+
+  onTouchEnd() {
+    this.isDown = false;
+  }
+
   onResize() {
     this.scroll.limit =
       this.elements.wrapper.offsetTop +
@@ -112,7 +144,7 @@ class Page {
     this.scroll.current = GSAP.utils.interpolate(
       this.scroll.current,
       this.scroll.target,
-      0.1
+      Detection.isPhone() ? 0.07 : 0.1
     );
 
     if (this.scroll.current < 0.01) {
@@ -135,7 +167,15 @@ class Page {
   }
 
   addEventListeners() {
-    window.addEventListener("wheel", this.onMouseWheelEvent);
+    if (Detection.isPhone()) {
+      window.addEventListener("touchstart", this.onTouchStartEvent);
+      window.addEventListener("touchmove", this.onTouchMoveEvent);
+      window.addEventListener("touchend", this.onTouchEndEvent);
+    }
+
+    if (Detection.isDesktop()) {
+      window.addEventListener("wheel", this.onMouseWheelEvent);
+    }
   }
 }
 
