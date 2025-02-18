@@ -143,4 +143,9 @@
   padding: 1.5vw;
   opacity: 0;
   transition: opacity 200ms ease-in;
+
+  @include media("<600px") {
+    height: 20vw;
+    padding: 4vw;
+  }
 }
