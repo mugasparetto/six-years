@@ -117,6 +117,34 @@
   }
 }
 
+.year-2019 .main-page__media {
+  @include media("<600px") {
+    &:nth-child(6) {
+      grid-column: 1 / 7;
+      aspect-ratio: 1280 / 854;
+    }
+  }
+  @include media(">=601px") {
+    &:nth-child(10n + 4) {
+      grid-column: 9/12;
+    }
+    &:nth-child(10n + 5) {
+      grid-column: 3/5;
+    }
+    &:nth-child(6) {
+      grid-column: 6 / 11;
+      aspect-ratio: 1280 / 854;
+      margin-top: 23vw;
+    }
+    &:nth-child(10n + 7) {
+      margin-top: 5vw;
+    }
+    &:nth-child(10n + 8) {
+      margin-top: 21vw;
+    }
+  }
+}
+
 .main-page__media__image {
   @extend %cover;
 
