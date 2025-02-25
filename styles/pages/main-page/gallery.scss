@@ -390,18 +390,6 @@
   }
 }
 
-.year-2025 .main-page__media {
-  @include media("<600px") {
-    &:nth-child(2) {
-    }
-  }
-
-  @include media(">=601px") {
-    &:nth-child(2) {
-    }
-  }
-}
-
 .main-page__media__image {
   @extend %cover;
 
