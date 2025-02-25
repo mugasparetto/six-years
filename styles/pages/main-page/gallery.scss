@@ -368,11 +368,24 @@
 .year-2024 .main-page__media {
   @include media("<600px") {
     &:nth-child(2) {
+      grid-column: 1 / 5;
+    }
+    &:nth-child(5) {
+      grid-column: 3 / 7;
+    }
+    &:nth-child(13) {
+      grid-column: 3 / 7;
+    }
+    &:nth-child(16) {
+      aspect-ratio: 4032 / 3024;
+      grid-column: 1 / 7;
     }
   }
 
   @include media(">=601px") {
-    &:nth-child(2) {
+    &:nth-child(16) {
+      aspect-ratio: 4032 / 3024;
+      grid-column: 8 / 13;
     }
   }
 }
