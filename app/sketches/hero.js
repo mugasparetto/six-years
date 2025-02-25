@@ -42,7 +42,7 @@ const sketch = (p) => {
   }
 
   p.draw = () => {
-    p.background("#0000ff");
+    p.background("#fafafa");
 
     currentTime = p.millis(); // Get the current time
     let d = p.dist(p.mouseX, p.mouseY, lastMousePos.x, lastMousePos.y);
