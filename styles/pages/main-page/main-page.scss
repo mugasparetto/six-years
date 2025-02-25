@@ -59,7 +59,8 @@
 .main-page__background__highlight-wrapper {
   h1 {
     font-family: $font-helvetica, sans-serif;
-    font-size: 12rem;
+    font-size: 14rem;
+    letter-spacing: 1rem;
 
     position: absolute;
     top: 50%;
@@ -67,10 +68,16 @@
     transform: translate(-50%, -50%);
     text-align: center;
     opacity: 0;
+    color: #256c88;
 
     .char {
       opacity: 0;
       will-change: transform;
+    }
+
+    @include media("<600px") {
+      font-size: 13rem;
+      letter-spacing: 0.2rem;
     }
   }
 }
