@@ -11,8 +11,8 @@ const sketch = (p) => {
   // CONSTANTS
   let imageUrls = [i01, i02, i03, i04, i05, i06, i07, i08];
 
-  let distThreshold = 100;
-  let scaleFactor = 9.58;
+  let distThreshold = 80;
+  let scaleFactor = 14.58;
   let followSpeed = 0.1; // Adjust for smoothness
   let maxDisplayTime = 2000; // Maximum time (in milliseconds) an image remains visible
   let maxImages = 5; // Maximum number of images to display

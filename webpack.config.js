@@ -57,8 +57,8 @@ module.exports = {
     new CleanWebpackPlugin(),
 
     new HtmlWebpackPlugin({
-      title: "Webpack Boilerplate",
-      // favicon: path.join(dirApp, "/images/favicon.png"),
+      title: "Six Years of Love - 27/02/2025",
+      favicon: path.join(dirApp, "/images/favicon/favicon-32x32.png"),
       template: path.join(dirApp, "template.html"),
       filename: "index.html",
     }),
