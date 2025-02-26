@@ -51,12 +51,12 @@ class MainPage extends Page {
       .fromTo(
         this.elements.topText,
         { y: -50 },
-        { y: 0, autoAlpha: 0.48, duration: 0.75, delay: 0.5 }
+        { y: 0, autoAlpha: 0.64, duration: 0.75, delay: 0.5 }
       )
       .fromTo(
         this.elements.bottomText,
         { y: 50 },
-        { y: 0, autoAlpha: 0.48, duration: 0.75, delay: 0.5 },
+        { y: 0, autoAlpha: 0.64, duration: 0.75, delay: 0.5 },
         "<"
       )
       .fromTo(
