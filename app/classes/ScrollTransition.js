@@ -30,11 +30,12 @@ class ScrollTransition extends Component {
     this.observer.observe(this.element);
   }
 
-  onResize() {
+  onResize(scrollAmount) {
     const box = this.element.getBoundingClientRect();
     this.height = box.height;
-    this.top = box.top;
+    this.top = box.top + scrollAmount;
     this.bottom = this.top + (1 - this.threshold) * this.height;
+    this.transition(scrollAmount);
   }
 
   transition(scrollAmount) {

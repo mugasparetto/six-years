@@ -2,6 +2,7 @@ import MainPage from "pages/MainPage";
 
 class App {
   constructor() {
+    this.calculateVH();
     this.createPage();
     this.addEventListeners();
     this.update();
@@ -11,11 +12,6 @@ class App {
     });
 
     this.resizeObserver.observe(document.body);
-
-    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-    let vh = window.innerHeight * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
   }
 
   createPage() {
@@ -25,8 +21,11 @@ class App {
   }
 
   onResize() {
+    this.calculateVH();
     this.page.onResize();
+  }
 
+  calculateVH() {
     // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
     let vh = window.innerHeight * 0.01;
     // Then we set the value in the --vh custom property to the root of the document

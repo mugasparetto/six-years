@@ -127,7 +127,9 @@ class Page {
       window.innerHeight;
 
     each(this.animations, (animation) => animation.onResize());
-    each(this.scrollTransitions, (transition) => transition.onResize());
+    each(this.scrollTransitions, (transition) =>
+      transition.onResize(this.scroll.current)
+    );
   }
 
   setActiveTransitionSection(instance) {
